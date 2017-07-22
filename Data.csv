@@ -1,0 +1,108 @@
+# of Alerts, Date, Type, Location, Lat, Lon
+57, 2017-07-21 00:00:00, Anthrax_ Chicken Pox_ Chikungunya_ Dengue_ Diarrhea_ Foodborne Illness_ Hemorrhagic Fever_ Influenza_ Influenza H1N1_ Japanese Encephalitis_ Kyasanur Forest Disease_ Malaria_ Measles_ Other Human Disease_ Rabies_ Scrub Typhus_ Tuberculosis_ Zika virus, India, 22.8835, 79.6162
+1, 2017-07-21 00:00:00, Undiagnosed, Ujjain_ Madhya Pradesh_ India, 23.1824, 75.7764
+11, 2017-07-19 00:00:00, Hemorrhagic Fever_ Influenza_ Influenza H1N1_ Japanese Encephalitis_ Kyasanur Forest Disease_ Rabies, Maharashtra State_ India, 19.5597, 75.8798
+1, 2017-07-19 00:00:00, Undiagnosed, Kandhamal_ Orissa_ India, 20.4506, 84.249
+2, 2017-07-17 00:00:00, Japanese Encephalitis, Assam State_ India, 25.9975, 93.0102
+1, 2017-07-17 00:00:00, Influenza H1N1, Uttarakhand State_ India, 30.259, 79.2553
+2, 2017-07-15 00:00:00, Hemorrhagic Fever_ Kyasanur Forest Disease, Maharashtra_ India, 19.7515, 75.7139
+2, 2017-07-14 00:00:00, Diphtheria_ Foodborne Illness, Kolar_ Karnataka_ India, 13.1333, 78.1333
+1, 2017-07-13 00:00:00, Japanese Encephalitis, Gaya_ Bihar_ India, 24.7833, 85
+3, 2017-07-13 00:00:00, Chicken Pox_ Influenza H1N1, Mumbai_ Maharashtra_ India, 18.975, 72.8258
+5, 2017-07-13 00:00:00, Hepatitis_ Influenza_ Scrub Typhus, Himachal Pradesh State_ India, 30.9964, 78.0029
+1, 2017-07-12 00:00:00, Foodborne Illness, Mahabubabad_ Telangana_ India, 17.5975, 80.0015
+5, 2017-07-12 00:00:00, Dengue_ Influenza H1N1_ Zika virus, Tamil Nadu State_ India, 11, 78
+9, 2017-07-12 00:00:00, Chikungunya_ Dengue_ Foodborne Illness_ Malaria, National Capital Territory of Delhi_ India, 28.6713, 77.2119
+5, 2017-07-10 00:00:00, Cholera_ Diarrhea_ Malaria_ Zika virus, Gujarat State_ India, 22.9988, 72.0043
+5, 2017-07-09 00:00:00, Hemorrhagic Fever_ Kyasanur Forest Disease_ Rabies, Goa State_ India, 15.5807, 74.0039
+5, 2017-07-09 00:00:00, Bite_ Chicken Pox_ Leishmaniasis_ Tuberculosis, Bihar_ India, 25.75, 85.75
+6, 2017-07-08 00:00:00, Cholera_ Influenza H1N1_ Malaria_ Rabies_ Shigellosis_ Tuberculosis, Telangana State_ India, 18, 79.5
+1, 2017-07-07 00:00:00, Diarrhea, Vadodara_ Gujarat_ India, 22.3065, 73.1876
+2, 2017-07-07 00:00:00, Japanese Encephalitis, Jharkhand State_ India, 23.75, 85.5
+2, 2017-07-07 00:00:00, Chicken Pox_ Influenza H1N1, Lucknow_ Uttar Pradesh_ India, 26.8494, 80.9197
+1, 2017-07-06 00:00:00, Foodborne Illness, Ranga Reddy_ Telangana_ India, 17.3891, 77.8367
+8, 2017-07-06 00:00:00, Dengue_ Hemorrhagic Fever_ Influenza H1N1_ Kyasanur Forest Disease_ Rabies_ Tuberculosis, Karnataka State_ India, 13.5, 76
+4, 2017-07-06 00:00:00, Diphtheria_ Influenza H1N1_ Leprosy_ Shigellosis, Malappuram_ Kerala_ India, 11, 76.1667
+4, 2017-07-02 00:00:00, Anthrax, Visakhapatnam_ Andhra Pradesh_ India, 17.7, 83.3
+1, 2017-07-01 00:00:00, Foot and Mouth, Manipur State_ India, 25.0059, 93.999
+1, 2017-07-01 00:00:00, Foot and Mouth, Kangpokpi_ Manipur_ India, 25.1333, 93.9667
+6, 2017-07-01 00:00:00, Cholera_ Hepatitis C_ Japanese Encephalitis_ Malaria_ Rabies, Punjab State_ India, 30.9964, 76.0034
+6, 2017-06-30 00:00:00, Anthrax_ Influenza H1N1, Andhra Pradesh State_ India, 16, 79
+1, 2017-06-29 00:00:00, Undiagnosed, East Godavari_ Andhra Pradesh_ India, 17.8333, 81.8333
+2, 2017-06-23 00:00:00, Chikungunya_ Dengue_ Malaria_ Measles, Bengaluru_ Karnataka_ India, 12.9762, 77.6033
+1, 2017-06-23 00:00:00, Diarrhea, Mandi_ Himachal Pradesh_ India, 31.75, 77
+1, 2017-06-23 00:00:00, Japanese Encephalitis, Pune District_ Maharashtra_ India, 18.75, 73.75
+7, 2017-06-20 00:00:00, Anthrax_ Cholera_ Diarrhea_ Dysentery_ Japanese Encephalitis, Odisha State_ India, 20.7524, 85.0014
+1, 2017-06-20 00:00:00, Foodborne Illness, Adilabad District_ Telangana_ India, 19.5, 78.5
+1, 2017-06-19 00:00:00, Rabies, Pune_ Maharashtra_ India, 18.5204, 73.8567
+1, 2017-06-18 00:00:00, Chikungunya, Chandigarh Union Territory_ India, 30.7418, 76.7834
+9, 2017-06-16 00:00:00, Chicken Pox_ Dengue_ Diphtheria_ Foodborne Illness_ Hepatitis_ Hepatitis A_ Influenza H1N1, Kerala State_ India, 9.9904, 76.5087
+1, 2017-06-13 00:00:00, Rabies, Padinjarathara_ Kerala_ India, 11.6776, 75.9729
+1, 2017-06-12 00:00:00, Rabies, Wayanad_ Kerala_ India, 11.605, 76.083
+1, 2017-06-12 00:00:00, Hepatitis E, Jammu and Kashmir State_ India, 33.0086, 76.9921
+1, 2017-06-12 00:00:00, Hepatitis E, Kulgam_ Jammu and Kashmir_ India, 33.65, 75.0167
+2, 2017-06-10 00:00:00, Anthrax, Bondāguda_ Odisha_ India, 19.6403, 83.9213
+1, 2017-06-09 00:00:00, Foodborne Illness, Mau_ Uttar Pradesh_ India, 25.611, 80.8607
+1, 2017-06-06 00:00:00, Foodborne Illness, Bahraich_ Uttar Pradesh_ India, 27.5833, 81.6
+4, 2017-06-06 00:00:00, Hemorrhagic Fever_ Kyasanur Forest Disease, Sindhudurg_ Maharashtra_ India, 16.1816, 73.7478
+3, 2017-06-03 00:00:00, Influenza_ Influenza H1N1, Rajasthan State_ India, 25.9975, 74.0039
+1, 2017-05-31 00:00:00, Malaria, Tripura State_ India, 24, 92
+1, 2017-05-31 00:00:00, Foodborne Illness, Rh-Bhoi District_ Meghalaya_ India, 25.89, 91.8271
+1, 2017-05-30 00:00:00, Foodborne Illness, Banās Kāntha_ Gujarat_ India, 24.25, 72.5
+1, 2017-05-28 00:00:00, Zika virus, Bapunagar_ Ahmedabad_ Gujarat_ India, 23.0387, 72.6308
+1, 2017-05-28 00:00:00, Rabies, Chandigarh City_ Chandīgarh_ India, 30.737, 76.787
+2, 2017-05-24 00:00:00, Diarrhea_ Measles, Uttar Pradesh State_ India, 27.2546, 80.7495
+1, 2017-05-24 00:00:00, Foodborne Illness, Udham Singh Nagar_ Uttarakhand_ India, 29.0541, 79.4631
+1, 2017-05-23 00:00:00, Diphtheria, Kozhikode_ Kerala_ India, 11.25, 75.7667
+1, 2017-05-22 00:00:00, Foodborne Illness, Madhya Pradesh State_ India, 23.25, 78
+1, 2017-05-21 00:00:00, Diarrhea, Mathura_ Uttar Pradesh_ India, 27.5, 77.6833
+2, 2017-05-14 00:00:00, Chicken Pox_ Influenza H1N1, West Bengal State_ India, 22.82, 88.2
+1, 2017-05-12 00:00:00, Foodborne Illness, Balkhad_ Madhya Pradesh_ India, 21.6113, 75.3599
+1, 2017-05-09 00:00:00, Influenza H1N1, Kolkata_ West Bengal_ India, 22.5697, 88.3697
+1, 2017-05-07 00:00:00, Measles, Bali_ Bengal_ India, 22.6461, 88.3403
+1, 2017-05-07 00:00:00, Environmental, Parra_ Goa_ India, 15.5667, 73.7833
+1, 2017-05-07 00:00:00, Environmental, Hassan_ Karnātaka_ India, 13.0006, 76.0994
+1, 2017-05-04 00:00:00, Chicken Pox, Jorhat_ Assam_ India, 26.75, 94.2167
+1, 2017-04-25 00:00:00, Influenza H1N1, Panchkula_ Haryana_ India, 30.695, 76.85
+1, 2017-04-25 00:00:00, Kyasanur Forest Disease, North Goa_ Goa_ India, 15.534, 73.9641
+1, 2017-04-25 00:00:00, Leprosy, Dadra and Nagar Haveli Union Territory_ India, 20.1666, 73.0833
+1, 2017-04-21 00:00:00, Japanese Encephalitis, Zerakpur_ Punjab_ India, 30.6562, 76.8209
+1, 2017-04-21 00:00:00, Measles, Kerakat_ Uttar Pradesh_ India, 25.6384, 82.9161
+2, 2017-04-20 00:00:00, Foodborne Illness, Nawāda_ Bihar_ India, 24.8867, 85.5436
+1, 2017-04-20 00:00:00, Hepatitis C, Shaheed Bhagat Singh Nagar_ Punjab_ India, 31.0913, 76.0392
+1, 2017-04-18 00:00:00, Cholera, Ganjam_ Orissa_ India, 19.5, 84.5
+3, 2017-04-17 00:00:00, Foodborne Illness_ Rabies, Aurangabad_ Mahārāshtra_ India, 19.8833, 75.3333
+2, 2017-04-13 00:00:00, Foodborne Illness_ Hepatitis, Cuttack_ Odisha_ India, 20.5, 86.25
+1, 2017-04-08 00:00:00, Foodborne Illness, Barpeta_ Assam_ India, 26.3229, 91.0063
+1, 2017-04-06 00:00:00, Foodborne Illness, Ernakulam_ Kerala_ India, 10, 76.5
+1, 2017-04-03 00:00:00, Foodborne Illness, Thiruvananthapuram_ Kerala_ India, 8.4833, 76.9167
+1, 2017-03-31 00:00:00, Hepatitis C, Kapurthala_ Punjab_ India, 31.25, 75.25
+3, 2017-03-31 00:00:00, Foodborne Illness_ Influenza H1N1_ Zika virus, Ahmedabad_ Gujarat_ India, 23.0333, 72.6167
+5, 2017-03-30 00:00:00, Kyasanur Forest Disease, Tirthahalli_ Karnataka_ India, 13.6884, 75.2455
+3, 2017-03-29 00:00:00, Anthrax, Koraput_ Orissa_ India, 19, 83
+1, 2017-03-29 00:00:00, Foodborne Illness, Chandan Nagar_ Indore_ Madhya Pradesh_ India, 22.713, 75.8236
+1, 2017-03-23 00:00:00, Foodborne Illness, Panaji_ Goa_ India, 15.4833, 73.8333
+1, 2017-03-21 00:00:00, Hepatitis, Karnataka_ India, 14.6667, 75.8333
+1, 2017-03-21 00:00:00, Foodborne Illness, Tumakuru_ Tumakuru District_ Karnataka_ India, 13.3415, 77.101
+3, 2017-03-20 00:00:00, Anthrax, Bisra_ Odisha_ India, 22.2667, 84.9833
+2, 2017-03-18 00:00:00, Foodborne Illness_ Poisoning, Gurdaspur_ Punjab_ India, 32.0333, 75.5167
+1, 2017-03-15 00:00:00, Foodborne Illness, Shimla Puri_ Ludhiana_ Punjab_ India, 30.8636, 75.8853
+1, 2017-03-10 00:00:00, Kyasanur Forest Disease, Pernem_ Goa_ India, 15.723, 73.7951
+1, 2017-03-09 00:00:00, Foodborne Illness, Tumakuru District_ Karnataka_ India, 13.5, 77
+1, 2017-03-09 00:00:00, Influenza H1N1, Rajkot_ Gujarāt_ India, 22.3, 70.7833
+2, 2017-03-06 00:00:00, Kyasanur Forest Disease, Sattari_ Goa_ India, 15.5941, 74.0586
+1, 2017-03-06 00:00:00, Foodborne Illness, Dholpur_ Rajasthan_ India, 26.6929, 77.8797
+1, 2017-03-05 00:00:00, Foodborne Illness, Gandhinagar_ Gujarāt_ India, 23.2167, 72.6833
+1, 2017-02-28 00:00:00, Rabies, Tharamangalam_ Tamil Nadu 636502_ India, 11.694, 77.971
+1, 2017-02-22 00:00:00, Influenza H1N1, Guntur_ Andhra Pradesh_ India, 16.3, 80.45
+1, 2017-02-20 00:00:00, Chicken Pox, Chhattisgarh State_ India, 21.4939, 82.0019
+1, 2017-02-14 00:00:00, Influenza H1N1, Coimbatore_ Tamil Nadu_ India, 11, 76.9667
+2, 2017-02-12 00:00:00, Fever_ Salmonella, Kondotty_ Kerala_ India, 11.1423, 75.9657
+1, 2017-02-12 00:00:00, Chicken Pox, Hyderabad_ Andhra Pradesh_ India, 17.3753, 78.4744
+1, 2017-02-08 00:00:00, Influenza H1N1, Puducherry_ Pondicherry_ India, 11.9338, 79.8298
+1, 2017-02-05 00:00:00, Dengue, Mizoram State_ India, 22.9988, 92.8102
+1, 2017-02-05 00:00:00, Chicken Pox, Haryana State_ India, 28.9985, 76.0034
+1, 2017-02-03 00:00:00, Foodborne Illness, Mirzapur_ Uttar Pradesh_ India, 25.1466, 82.5624
+2, 2017-02-02 00:00:00, Encephalitis, Muzaffarpur_ Bihār_ India, 26.1167, 85.4
+1, 2017-01-29 00:00:00, Foodborne Illness, Lakhīmpur_ Uttar Pradesh_ India, 27.9482, 80.7794
+1, 2017-01-24 00:00:00, Influenza H1N1, Nagarkurnool_ Telangana_ India, 16.4939, 78.3102
