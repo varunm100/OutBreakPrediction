@@ -3,18 +3,31 @@
 
 from bs4 import BeautifulSoup as soup
 import urllib.request, sys,json,re
-import tensorflow as tf
 import numpy as np
 from datetime import datetime
 import datetime as dt
 import math
 
+#IMPORTANT VARS
+#--------------
+typeDiseaseString = 'Foodborne'
+ScaleFactor = 1
+#--------------
+
 RequestURL = 'http://www.healthmap.org/getAlerts.php?category%5B%5D=1&category%5B%5D=2&category%5B%5D=29&locations%5B%5D=142&species%5B%5D=132&sdate=01%2F21%2F2017&edate=07%2F22%2F2017&heatscore=1&partner=promed'
+
+
 
 global MainTypeD
 MainTypeD = []
 global MainFormattedArr
 MainFormattedArr = []
+global TrueArr
+TrueArr = [0,0,0,0,0]
+global FalseArr
+FalseArr = [0,0,0,0,0]
+global ClassificationPercentages
+ClassificationPercentages = []
 #Weather constants -
 Data = open('Data.csv', 'w')
 Data.write('# of Alerts, Date, Type, Location, Lat, Lon' + '\n')
@@ -52,7 +65,7 @@ def GetData(inputURL):
     	date_format = "%d/%m/%Y"
     	Date = datetime.strptime(str(Date), date_format)
     	DateString = str(Date).replace(' 00:00:00','')
-    	if "Foodborne" in str(element['label']).replace(',','_'):
+    	if str(typeDiseaseString) in str(element['label']).replace(',','_'):
     		MainTypeD.append(str(DateString) + ' ' + str(element['lat']) + ' ' + str(element['lon']))
     	NumberAlerts = len(element['alertids'])
     	# Finds the day and year - str(re.findall(r'\d+', str(Date)))
@@ -86,19 +99,6 @@ def GetData(inputURL):
     print ("Got Most Recent Data [--------------100%-------------]")
     return CounterDiType
 
-def BayesTheory():
-	# Days off can have | 0-3 | 4-8 | 9-14| 15-20  | >20 |
-	# -----------------------------------------------------
-	#Index of those day |  0  |  1	|  2  |   3	   |  4  |
-
-	#Bayes Theory = P(True|0-1) = P(True)*P(0-1|True)/P(0-1)
-	global MainFormattedArr
-	TrueArr = []
-	#includes count of 0-3, 4-8, 9-14, 15-20, and >20 in the True classifier
-	FalseArr = []
-	#includes count of 0-3, 4-8, 9-14, 15-20, and >20 in the False classifier
-
-
 def FormatDataMain():
 	#Get Start Date
 	StringDate = str(MainTypeD[0]).split(' ')
@@ -128,21 +128,160 @@ def FormatDataMain():
 			FinalFreqArr.append(str(StartDate + dt.timedelta(days=a)))
 
 	FinalFreqArr = list(set(FinalFreqArr))
+	NewUpdatedArr = []
 	for iElement in FinalFreqArr:
 		numFeatures = str(iElement).split(' ')
 		if (len(numFeatures) <= 1):
 			#Do Some stuff here: get the closest number of days away from a previous day
 			ElementIndex = FinalFreqArr.index(iElement)
-			SearchSubArr = FinalFreqArr[:ElementIndex]
+			ElementIndex+=1
+			SearchSubArr = FinalFreqArr[0:ElementIndex]
 			SearchSubArr = SearchSubArr[::-1]
+			StartNumF = str(SearchSubArr[0]).split(' ')
 			for SubSubArr in SearchSubArr:
 				numF = str(SubSubArr).split(' ')
-				if (len(numF) > 1):
+				#print(SubSubArr)
+				if (len(numF) > 3):
+					numStart = str(StartNumF[0]).split(' ')
+					DateAppendingStart = str(numStart[0]).strip()
+					DateAppendingStart = DateAppendingStart.replace('-','/')
+					date_format = "%Y/%m/%d"
+					CounterDate002 = datetime.strptime(str(DateAppendingStart), date_format)
+					CounterDate002 = dt.date(CounterDate002.year, CounterDate002.month, CounterDate002.day)
+
+					DateAppendingEnd = str(numF[0]).strip()
+					DateAppendingEnd = DateAppendingEnd.replace('-','/')
+					date_format = "%Y/%m/%d"
+					CounterDate003 = datetime.strptime(str(DateAppendingEnd), date_format)
+					CounterDate003 = dt.date(CounterDate003.year, CounterDate003.month, CounterDate003.day)
+
+					DeltaDaysTotal = CounterDate002 - CounterDate003
+					DeltaDaysTotal = DeltaDaysTotal.days 
+					NewUpdatedArr.append(str(SearchSubArr[0]) + " " + str(abs(DeltaDaysTotal)))
 					break
+		else:
+			NewUpdatedArr.append(str(iElement))
+
 	
-	print("Formatted " + str(len(FinalFreqArr)) + " points!")
-	return FinalFreqArr
+	print("Formatted " + str(len(NewUpdatedArr)) + " points!")
+	return NewUpdatedArr
+
+def GenerateGraphStructure():
+	global MainFormattedArr
+	# Days off can have | 0-3 | 4-8 | 9-14| 15-25 | >25
+	# -----------------------------------------------------
+	#Index of those day |  0  |  1	|  2  |   3   |  4
+	#5 Zeros to indicate the four classifications
+	global TrueArr
+	global FalseArr
+	TrueArr = [0,0,0,0,0]
+	FalseArr = [0,0,0,0,0]
+	for ItemMain in MainFormattedArr:
+		StringParsedArr = str(ItemMain).split(' ')
+		StringParsedArrFalse = str(ItemMain).split(' ')
+		if len(StringParsedArr) > 3:
+			DeltaDaysMain = int(StringParsedArr[3])
+			if 0 <= DeltaDaysMain <= 3:
+				TrueArr[0] = TrueArr[0] + 1
+			elif 4 <= DeltaDaysMain <= 8:
+				TrueArr[1] = TrueArr[1] + 1
+			elif 9 <= DeltaDaysMain <= 14:
+				TrueArr[2] = TrueArr[2] + 1
+			elif 15 <= DeltaDaysMain <= 25:
+				TrueArr[3] = TrueArr[3] + 1
+			elif DeltaDaysMain >= 25:
+				TrueArr[4] = TrueArr[4] + 1
+		else:
+			DeltaDaysMainFalse = int(StringParsedArrFalse[1])
+			if 0 <= DeltaDaysMainFalse <= 3:
+				FalseArr[0] = FalseArr[0] + 1
+			elif 4 <= DeltaDaysMainFalse <= 8:
+				FalseArr[1] = FalseArr[1] + 1
+			elif 9 <= DeltaDaysMainFalse <= 14:
+				FalseArr[2] = FalseArr[2] + 1
+			elif 15 <= DeltaDaysMainFalse <= 25:
+				FalseArr[3] = FalseArr[3] + 1
+			elif DeltaDaysMainFalse >= 25:
+				FalseArr[4] = FalseArr[4] + 1
+
+def BayesTheory():
+	# Days off can have | 0-3 | 4-8 | 9-14| 15-25 | >25
+	# -----------------------------------------------------
+	#Index of those day |  0  |  1	|  2  |   3   |  4
+
+	#Bayes Theory = P(True|0-1) = P(True)*P(0-1|True)/P(0-1)
+	global MainFormattedArr
+	global TrueArr
+	global FalseArr
+	global ClassificationPercentages
+	classArrType = [0,1,2,3,4]
+	#------------------------- FINAL MAIN CODE-------------------------#
+	TrueSum = int(sum(TrueArr))
+	FalseSum = int(sum(FalseArr))
+	TotalSum = TrueSum + FalseSum
+	for SingleType in range(len(classArrType)):
+		Yx = TrueArr[SingleType]
+		Ay = TrueSum
+		A = TotalSum
+		Nx = FalseArr[SingleType]
+		Numerator = (Yx/Ay)*(Ay/A)
+		Denominator = (Nx+Yx)/A
+		Final = Numerator/Denominator
+		ClassificationPercentages.append(Final)
+
+def Prediction(DaysAhead):
+	global ClassificationPercentages
+	global MainFormattedArr
+	Today = dt.date.today() + dt.timedelta(days=DaysAhead)
+	#LastDaySince = 
+	counter = 0
+	FlagBoolPrediction = False
+	DateDelta = 0
+	while True:
+		CounterDate004 = Today - dt.timedelta(days=counter)
+		CounterDate004 = dt.date(CounterDate004.year, CounterDate004.month, CounterDate004.day)
+		for CheckingDate in MainFormattedArr:
+			ParsedDate = str(CheckingDate).split(' ')
+			size = len(ParsedDate)
+			ParsedDate = ParsedDate[0].strip()
+			ParsedDate = ParsedDate.replace('-','/')
+			date_format = "%Y/%m/%d"
+			ParsedDate = datetime.strptime(str(ParsedDate), date_format)
+			ParsedDate = dt.date(ParsedDate.year, ParsedDate.month, ParsedDate.day)
+			if str(ParsedDate) == str(CounterDate004):
+				if size > 3:
+					FlagBoolPrediction = True
+					break
+		if FlagBoolPrediction == True:
+			DateDelta = counter
+			break
+		
+		counter+=1
+
+	if 0 <= DateDelta <= 3:
+		return ClassificationPercentages[0]
+	elif 4 <= DateDelta <= 8:
+		return ClassificationPercentages[1]
+	elif 9 <= DateDelta <= 14:
+		return ClassificationPercentages[2]
+	elif 15 <= DateDelta <= 25:
+		return ClassificationPercentages[3]
+	elif DateDelta >= 25:
+		return ClassificationPercentages[4]
+
+	return 0
+
+
+
+
+PredictionDaysAheadUserInput = input("How far ahead would you like to predict?: ")
 
 MainTypeD = GetData(RequestURL)
 MainFormattedArr = FormatDataMain()
+GenerateGraphStructure()
 BayesTheory()
+FinalPredictionVal = Prediction(int(PredictionDaysAheadUserInput))
+FinalPredictionVal = ScaleFactor*FinalPredictionVal
+print("------------------------------------------------------------------------------------------------------------------------------" + "\n")
+print("There is a " + str(round(float(FinalPredictionVal*100), 3)) + "% chance of their being a " + str(typeDiseaseString) + " outbreak in " + str(PredictionDaysAheadUserInput) + " days of time." + "\n")
+print("------------------------------------------------------------------------------------------------------------------------------")
