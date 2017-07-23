@@ -10,8 +10,8 @@ import math
 
 #IMPORTANT VARS
 #--------------
-typeDiseaseString = 'Foodborne'
-ScaleFactor = 1
+typeDiseaseString = 'Dengue'
+ScaleFactor = 1.18
 #--------------
 
 RequestURL = 'http://www.healthmap.org/getAlerts.php?category%5B%5D=1&category%5B%5D=2&category%5B%5D=29&locations%5B%5D=142&species%5B%5D=132&sdate=01%2F21%2F2017&edate=07%2F22%2F2017&heatscore=1&partner=promed'
@@ -28,6 +28,9 @@ global FalseArr
 FalseArr = [0,0,0,0,0]
 global ClassificationPercentages
 ClassificationPercentages = []
+
+global DateDelta
+DateDelta = 0
 #Weather constants -
 Data = open('Data.csv', 'w')
 Data.write('# of Alerts, Date, Type, Location, Lat, Lon' + '\n')
@@ -232,6 +235,7 @@ def BayesTheory():
 def Prediction(DaysAhead):
 	global ClassificationPercentages
 	global MainFormattedArr
+	global DateDelta
 	Today = dt.date.today() + dt.timedelta(days=DaysAhead)
 	#LastDaySince = 
 	counter = 0
@@ -284,4 +288,5 @@ FinalPredictionVal = Prediction(int(PredictionDaysAheadUserInput))
 FinalPredictionVal = ScaleFactor*FinalPredictionVal
 print("------------------------------------------------------------------------------------------------------------------------------" + "\n")
 print("There is a " + str(round(float(FinalPredictionVal*100), 3)) + "% chance of their being a " + str(typeDiseaseString) + " outbreak in " + str(PredictionDaysAheadUserInput) + " days of time." + "\n")
+print("The most recent " + str(typeDiseaseString) + " outbreak happened " + str(DateDelta) + " days before the date you entered." + "\n")
 print("------------------------------------------------------------------------------------------------------------------------------")
