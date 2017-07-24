@@ -8,33 +8,35 @@ from datetime import datetime
 import datetime as dt
 import math
 
-#IMPORTANT VARS
-#--------------
+#IMPORTANT CONST
+#-------------------------------#
 typeDiseaseString = 'Foodborne'
 ScaleFactor = 1.18
-#--------------
-
-RequestURL = 'http://www.healthmap.org/getAlerts.php?category%5B%5D=1&category%5B%5D=2&category%5B%5D=29&locations%5B%5D=142&species%5B%5D=132&sdate=01%2F21%2F2017&edate=07%2F22%2F2017&heatscore=1&partner=promed'
+#-------------------------------#
 
 
 
+#SOME BACK-END VARS
+#-------------------------------#
 global MainTypeD
-MainTypeD = []
 global MainFormattedArr
-MainFormattedArr = []
 global TrueArr
-TrueArr = [0,0,0,0,0]
 global FalseArr
-FalseArr = [0,0,0,0,0]
 global ClassificationPercentages
-ClassificationPercentages = []
-
 global DateDelta
+MainTypeD = []
+MainFormattedArr = []
+TrueArr = [0,0,0,0,0]
+FalseArr = [0,0,0,0,0]
+ClassificationPercentages = []
 DateDelta = 0
-#Weather constants -
-Data = open('Data.csv', 'w')
-Data.write('# of Alerts, Date, Type, Location, Lat, Lon' + '\n')
-Data.close()
+RequestURL = 'http://www.healthmap.org/getAlerts.php?category%5B%5D=1&category%5B%5D=2&category%5B%5D=29&locations%5B%5D=142&species%5B%5D=132&sdate=01%2F21%2F2017&edate=07%2F22%2F2017&heatscore=1&partner=promed'
+#-------------------------------#
+
+def WriteFileHeaders():
+	Data = open('Data.csv', 'w')
+	Data.write('# of Alerts, Date, Type, Location, Lat, Lon' + '\n')
+	Data.close()
 
 def FormatData(InputDate):
 	InputDate = InputDate.replace('Jan','1')
@@ -71,7 +73,6 @@ def GetData(inputURL):
     	if str(typeDiseaseString) in str(element['label']).replace(',','_'):
     		MainTypeD.append(str(DateString) + ' ' + str(element['lat']) + ' ' + str(element['lon']))
     	NumberAlerts = len(element['alertids'])
-    	# Finds the day and year - str(re.findall(r'\d+', str(Date)))
     	concateString = str(NumberAlerts) + ', ' + str(Date).replace(',','_') + ', ' + str(element['label']).replace(',','_') + ', ' + str(element['place_name']).replace(',','_') + ', ' + str(element['lat']).replace(',','_') + ', ' + str(element['lon']).replace(',','_') + '\n'
     	Data = open('Data.csv', 'a')
     	Data.write(str(concateString))
@@ -103,14 +104,12 @@ def GetData(inputURL):
     return CounterDiType
 
 def FormatDataMain():
-	#Get Start Date
 	StringDate = str(MainTypeD[0]).split(' ')
 	StringDate = str(StringDate[0]).strip()
 	StringDate = StringDate.replace('-','/')
 	date_format = "%Y/%m/%d"
 	StartDate = datetime.strptime(str(StringDate), date_format)
 	StartDate = dt.date(StartDate.year,StartDate.month,StartDate.day)
-	#Get End Date
 	EndDate = dt.date.today()
 	FinalFreqArr = []
 	deltaDays = EndDate - StartDate
@@ -135,7 +134,6 @@ def FormatDataMain():
 	for iElement in FinalFreqArr:
 		numFeatures = str(iElement).split(' ')
 		if (len(numFeatures) <= 1):
-			#Do Some stuff here: get the closest number of days away from a previous day
 			ElementIndex = FinalFreqArr.index(iElement)
 			ElementIndex+=1
 			SearchSubArr = FinalFreqArr[0:ElementIndex]
@@ -143,7 +141,6 @@ def FormatDataMain():
 			StartNumF = str(SearchSubArr[0]).split(' ')
 			for SubSubArr in SearchSubArr:
 				numF = str(SubSubArr).split(' ')
-				#print(SubSubArr)
 				if (len(numF) > 3):
 					numStart = str(StartNumF[0]).split(' ')
 					DateAppendingStart = str(numStart[0]).strip()
@@ -174,7 +171,6 @@ def GenerateGraphStructure():
 	# Days off can have | 0-3 | 4-8 | 9-14| 15-25 | >25
 	# -----------------------------------------------------
 	#Index of those day |  0  |  1	|  2  |   3   |  4
-	#5 Zeros to indicate the four classifications
 	global TrueArr
 	global FalseArr
 	TrueArr = [0,0,0,0,0]
@@ -218,7 +214,7 @@ def BayesTheory():
 	global FalseArr
 	global ClassificationPercentages
 	classArrType = [0,1,2,3,4]
-	#------------------------- FINAL MAIN CODE-------------------------#
+#------------------------- PUTTING EVERYTHING TOGETHER -------------------------# 
 	TrueSum = int(sum(TrueArr))
 	FalseSum = int(sum(FalseArr))
 	TotalSum = TrueSum + FalseSum
@@ -274,18 +270,32 @@ def Prediction(DaysAhead):
 
 	return 0
 
+#--------------------------------------------------------------------#
+#		IIIII 	II 		   IIIIII         II       II   IIIIIIIIIII  #
+#	 IIII 		II 			 II           II       II       II       #
+#	II 			II 			 II           II       II       II       #
+#	II 			II 			 II           II       II       II       #
+#	II 			II 			 II           II       II       II       #
+#	II 			II 			 II           II       II       II       #
+#	 IIII  		II 			 II           II       II       II       #
+#		IIIII   IIIIIIIII  IIIIII         	IIIIIII     IIIIIIIIIII  #
+#--------------------------------------------------------------------#
+
+def mainCLI():
+	WriteFileHeaders()
+	PredictionDaysAheadUserInput = input("How far ahead would you like to predict?: ")
+	MainTypeD = GetData(RequestURL)
+	MainFormattedArr = FormatDataMain()
+	GenerateGraphStructure()
+	BayesTheory()
+	FinalPredictionVal = Prediction(int(PredictionDaysAheadUserInput))
+	FinalPredictionVal = ScaleFactor*FinalPredictionVal
+	print("------------------------------------------------------------------------------------------------------------------------------" + "\n")
+	print("There is a " + str(round(float(FinalPredictionVal*100), 3)) + "% chance of their being a " + str(typeDiseaseString) + " outbreak in " + str(PredictionDaysAheadUserInput) + " days of time." + "\n")
+	print("The most recent " + str(typeDiseaseString) + " outbreak happened " + str(DateDelta) + " days before the date you entered." + "\n")
+	print("------------------------------------------------------------------------------------------------------------------------------")
+
+mainCLI()
 
 
-
-PredictionDaysAheadUserInput = input("How far ahead would you like to predict?: ")
-
-MainTypeD = GetData(RequestURL)
-MainFormattedArr = FormatDataMain()
-GenerateGraphStructure()
-BayesTheory()
-FinalPredictionVal = Prediction(int(PredictionDaysAheadUserInput))
-FinalPredictionVal = ScaleFactor*FinalPredictionVal
-print("------------------------------------------------------------------------------------------------------------------------------" + "\n")
-print("There is a " + str(round(float(FinalPredictionVal*100), 3)) + "% chance of their being a " + str(typeDiseaseString) + " outbreak in " + str(PredictionDaysAheadUserInput) + " days of time." + "\n")
-print("The most recent " + str(typeDiseaseString) + " outbreak happened " + str(DateDelta) + " days before the date you entered." + "\n")
-print("------------------------------------------------------------------------------------------------------------------------------")
+#-------------------------------#
