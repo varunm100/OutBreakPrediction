@@ -280,22 +280,34 @@ def Prediction(DaysAhead):
 #	 IIII  		II 			 II           II       II       II       #
 #		IIIII   IIIIIIIII  IIIIII         	IIIIIII     IIIIIIIIIII  #
 #--------------------------------------------------------------------#
+#-----------------------------------------------------------#
+#	IIIIIIIII     IIIIIIIIII     IIIIIIIII      IIIIIIIIII  #
+#		   II     II             II      II         II      #
+#		  II      II             II       II        II      #
+#        II       II             II      II         II      #
+#       II        IIIIIIIIII     IIIIIIII           II      #
+#      II         II             II      II         II      #
+#     II          II             II       II        II      #
+#    II           II             II      II         II      #
+#   IIIIIIIII     IIIIIIIIII     IIIIIIII       IIIIIIIIII  #
+#-----------------------------------------------------------#
 
-def mainCLI():
-	WriteFileHeaders()
-	PredictionDaysAheadUserInput = input("How far ahead would you like to predict?: ")
-	MainTypeD = GetData(RequestURL)
-	MainFormattedArr = FormatDataMain()
-	GenerateGraphStructure()
-	BayesTheory()
-	FinalPredictionVal = Prediction(int(PredictionDaysAheadUserInput))
-	FinalPredictionVal = ScaleFactor*FinalPredictionVal
-	print("------------------------------------------------------------------------------------------------------------------------------" + "\n")
-	print("There is a " + str(round(float(FinalPredictionVal*100), 3)) + "% chance of their being a " + str(typeDiseaseString) + " outbreak in " + str(PredictionDaysAheadUserInput) + " days of time." + "\n")
-	print("The most recent " + str(typeDiseaseString) + " outbreak happened " + str(DateDelta) + " days before the date you entered." + "\n")
-	print("------------------------------------------------------------------------------------------------------------------------------")
 
-mainCLI()
+ZebiLog = '#-----------------------------------------------------------#\n#	IIIIIIIII     IIIIIIIIII     IIIIIIIII      IIIIIIIIII  #\n#		   II     II             II      II         II      #\n#		  II      II             II       II        II      #\n#        II       II             II      II         II      #\n#       II        IIIIIIIIII     IIIIIIII           II      #\n#      II         II             II      II         II      #\n#     II          II             II       II        II      #\n#    II           II             II      II         II      #\n#   IIIIIIIII     IIIIIIIIII     IIIIIIII       IIIIIIIIII  #\n#-----------------------------------------------------------#\n'
+
+WriteFileHeaders()
+print(str(ZebiLog))
+PredictionDaysAheadUserInput = input("How far ahead would you like to predict?: ")
+MainTypeD = GetData(RequestURL)
+MainFormattedArr = FormatDataMain()
+GenerateGraphStructure()
+BayesTheory()
+FinalPredictionVal = Prediction(int(PredictionDaysAheadUserInput))
+FinalPredictionVal = ScaleFactor*FinalPredictionVal
+print("------------------------------------------------------------------------------------------------------------------------------" + "\n")
+print("There is a " + str(round(float(FinalPredictionVal*100), 3)) + "% chance of their being a " + str(typeDiseaseString) + " outbreak in " + str(PredictionDaysAheadUserInput) + " days of time." + "\n")
+print("The most recent " + str(typeDiseaseString) + " outbreak happened " + str(DateDelta) + " days before the date you entered." + "\n")
+print("------------------------------------------------------------------------------------------------------------------------------")
 
 
 #-------------------------------#
