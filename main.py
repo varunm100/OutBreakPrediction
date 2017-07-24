@@ -10,7 +10,7 @@ import math
 
 #IMPORTANT VARS
 #--------------
-typeDiseaseString = 'Dengue'
+typeDiseaseString = 'Foodborne'
 ScaleFactor = 1.18
 #--------------
 
@@ -237,7 +237,6 @@ def Prediction(DaysAhead):
 	global MainFormattedArr
 	global DateDelta
 	Today = dt.date.today() + dt.timedelta(days=DaysAhead)
-	#LastDaySince = 
 	counter = 0
 	FlagBoolPrediction = False
 	DateDelta = 0
