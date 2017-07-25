@@ -14,8 +14,6 @@ typeDiseaseString = 'Foodborne'
 ScaleFactor = 1.18
 #-------------------------------#
 
-
-
 #SOME BACK-END VARS
 #-------------------------------#
 global MainTypeD
@@ -292,8 +290,17 @@ def Prediction(DaysAhead):
 #   IIIIIIIII     IIIIIIIIII     IIIIIIII       IIIIIIIIII  #
 #-----------------------------------------------------------#
 
+# print('#	IIIIIIIII     IIIIIIIIII     IIIIIIIII      IIIIIIIIII  #')
+# print('#		   II     II             II      II         II      #')
+# print('#		  II      II             II       II        II      #')
+# print ('#        II       II             II      II         II      #')
+# print ('#       II        IIIIIIIIII     IIIIIIII           II      #')
+# print ('#      II         II             II      II         II      #')
+# print ('#     II          II             II       II        II      #')
+# print ('#    II           II             II      II         II      #')
+# print ('#   IIIIIIIII     IIIIIIIIII     IIIIIIII       IIIIIIIIII  #')
+#------------------------------#
 
-ZebiLog = '#-----------------------------------------------------------#\n#	IIIIIIIII     IIIIIIIIII     IIIIIIIII      IIIIIIIIII  #\n#		   II     II             II      II         II      #\n#		  II      II             II       II        II      #\n#        II       II             II      II         II      #\n#       II        IIIIIIIIII     IIIIIIII           II      #\n#      II         II             II      II         II      #\n#     II          II             II       II        II      #\n#    II           II             II      II         II      #\n#   IIIIIIIII     IIIIIIIIII     IIIIIIII       IIIIIIIIII  #\n#-----------------------------------------------------------#\n'
 
 WriteFileHeaders()
 print(str(ZebiLog))
