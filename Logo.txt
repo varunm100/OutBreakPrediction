@@ -1,0 +1,17 @@
+                                      bbbbbbbb                    
+ZZZZZZZZZZZZZZZZZZZ                   b::::::b              iiii  
+Z:::::::::::::::::Z                   b::::::b             i::::i 
+Z:::::::::::::::::Z                   b::::::b              iiii  
+Z:::ZZZZZZZZ:::::Z                     b:::::b                    
+ZZZZZ     Z:::::Z      eeeeeeeeeeee    b:::::bbbbbbbbb    iiiiiii 
+        Z:::::Z      ee::::::::::::ee  b::::::::::::::bb  i:::::i 
+       Z:::::Z      e::::::eeeee:::::eeb::::::::::::::::b  i::::i 
+      Z:::::Z      e::::::e     e:::::eb:::::bbbbb:::::::b i::::i 
+     Z:::::Z       e:::::::eeeee::::::eb:::::b    b::::::b i::::i 
+    Z:::::Z        e:::::::::::::::::e b:::::b     b:::::b i::::i 
+   Z:::::Z         e::::::eeeeeeeeeee  b:::::b     b:::::b i::::i 
+ZZZ:::::Z     ZZZZZe:::::::e           b:::::b     b:::::b i::::i 
+Z::::::ZZZZZZZZ:::Ze::::::::e          b:::::bbbbbb::::::bi::::::i
+Z:::::::::::::::::Z e::::::::eeeeeeee  b::::::::::::::::b i::::::i
+Z:::::::::::::::::Z  ee:::::::::::::e  b:::::::::::::::b  i::::::i
+ZZZZZZZZZZZZZZZZZZZ    eeeeeeeeeeeeee  bbbbbbbbbbbbbbbb   iiiiiiii

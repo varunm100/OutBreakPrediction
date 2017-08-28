@@ -11,7 +11,8 @@ import math
 #IMPORTANT CONST
 #-------------------------------#
 typeDiseaseString = 'Foodborne'
-ScaleFactor = 1.18
+GetDataStart = ''
+GetDataEnd = ''
 #-------------------------------#
 
 #SOME BACK-END VARS
@@ -28,7 +29,13 @@ TrueArr = [0,0,0,0,0]
 FalseArr = [0,0,0,0,0]
 ClassificationPercentages = []
 DateDelta = 0
-RequestURL = 'http://www.healthmap.org/getAlerts.php?category%5B%5D=1&category%5B%5D=2&category%5B%5D=29&locations%5B%5D=142&species%5B%5D=132&sdate=01%2F21%2F2017&edate=07%2F22%2F2017&heatscore=1&partner=promed'
+TodayDate = dt.date.today()
+print(TodayDate.month)
+print(TodayDate.day)
+print(TodayDate.year)
+
+RequestURL = 'http://www.healthmap.org/getAlerts.php?category%5B%5D=1&category%5B%5D=2&category%5B%5D=29&locations%5B%5D=142&species%5B%5D=132&sdate=01%2F21%2F2000&edate=' + str(TodayDate.month) + '%2F' + str(TodayDate.day) + '%2F' +  str(TodayDate.year) + '&heatscore=1&partner=promed'
+ScaleFactor = 1.1
 #-------------------------------#
 
 def WriteFileHeaders():
@@ -159,9 +166,7 @@ def FormatDataMain():
 					break
 		else:
 			NewUpdatedArr.append(str(iElement))
-
-	
-	print("Formatted " + str(len(NewUpdatedArr)) + " points!")
+	#print("Formatted " + str(len(NewUpdatedArr)) + " points!")
 	return NewUpdatedArr
 
 def GenerateGraphStructure():
@@ -255,7 +260,9 @@ def Prediction(DaysAhead):
 		
 		counter+=1
 
-	if 0 <= DateDelta <= 3:
+	if DateDelta == 0:
+		return (1/ScaleFactor)
+	elif 1 <= DateDelta <= 3:
 		return ClassificationPercentages[0]
 	elif 4 <= DateDelta <= 8:
 		return ClassificationPercentages[1]
@@ -268,42 +275,16 @@ def Prediction(DaysAhead):
 
 	return 0
 
-#--------------------------------------------------------------------#
-#		IIIII 	II 		   IIIIII         II       II   IIIIIIIIIII  #
-#	 IIII 		II 			 II           II       II       II       #
-#	II 			II 			 II           II       II       II       #
-#	II 			II 			 II           II       II       II       #
-#	II 			II 			 II           II       II       II       #
-#	II 			II 			 II           II       II       II       #
-#	 IIII  		II 			 II           II       II       II       #
-#		IIIII   IIIIIIIII  IIIIII         	IIIIIII     IIIIIIIIIII  #
-#--------------------------------------------------------------------#
-#-----------------------------------------------------------#
-#	IIIIIIIII     IIIIIIIIII     IIIIIIIII      IIIIIIIIII  #
-#		   II     II             II      II         II      #
-#		  II      II             II       II        II      #
-#        II       II             II      II         II      #
-#       II        IIIIIIIIII     IIIIIIII           II      #
-#      II         II             II      II         II      #
-#     II          II             II       II        II      #
-#    II           II             II      II         II      #
-#   IIIIIIIII     IIIIIIIIII     IIIIIIII       IIIIIIIIII  #
-#-----------------------------------------------------------#
+def PrintZebiLogo():
+	with open('Logo.txt') as f:
+		FileLines = f.readlines()
+	for SingleLine in FileLines:
+		print("\033[34m" + SingleLine + "\033[0m", end='', flush=True)
+	print('\n\n\n')
 
-# print('#	IIIIIIIII     IIIIIIIIII     IIIIIIIII      IIIIIIIIII  #')
-# print('#		   II     II             II      II         II      #')
-# print('#		  II      II             II       II        II      #')
-# print ('#        II       II             II      II         II      #')
-# print ('#       II        IIIIIIIIII     IIIIIIII           II      #')
-# print ('#      II         II             II      II         II      #')
-# print ('#     II          II             II       II        II      #')
-# print ('#    II           II             II      II         II      #')
-# print ('#   IIIIIIIII     IIIIIIIIII     IIIIIIII       IIIIIIIIII  #')
-#------------------------------#
-
-
+#-------------------------------#
+PrintZebiLogo()
 WriteFileHeaders()
-print(str(ZebiLog))
 PredictionDaysAheadUserInput = input("How far ahead would you like to predict?: ")
 MainTypeD = GetData(RequestURL)
 MainFormattedArr = FormatDataMain()
@@ -311,10 +292,9 @@ GenerateGraphStructure()
 BayesTheory()
 FinalPredictionVal = Prediction(int(PredictionDaysAheadUserInput))
 FinalPredictionVal = ScaleFactor*FinalPredictionVal
+print('\n\n')
 print("------------------------------------------------------------------------------------------------------------------------------" + "\n")
 print("There is a " + str(round(float(FinalPredictionVal*100), 3)) + "% chance of their being a " + str(typeDiseaseString) + " outbreak in " + str(PredictionDaysAheadUserInput) + " days of time." + "\n")
 print("The most recent " + str(typeDiseaseString) + " outbreak happened " + str(DateDelta) + " days before the date you entered." + "\n")
 print("------------------------------------------------------------------------------------------------------------------------------")
-
-
 #-------------------------------#
