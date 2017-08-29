@@ -8,12 +8,14 @@ from datetime import datetime
 import datetime as dt
 import math
 
+
 #IMPORTANT CONST
 #-------------------------------#
 typeDiseaseString = 'Foodborne'
 GetDataStart = ''
 GetDataEnd = ''
 #-------------------------------#
+
 
 #SOME BACK-END VARS
 #-------------------------------#
@@ -33,6 +35,7 @@ TodayDate = dt.date.today()
 RequestURL = 'http://www.healthmap.org/getAlerts.php?category%5B%5D=1&category%5B%5D=2&category%5B%5D=29&locations%5B%5D=142&species%5B%5D=132&sdate=01%2F01%2F1900&edate=' + str(TodayDate.month) + '%2F' + str(TodayDate.day) + '%2F' +  str(TodayDate.year) + '&heatscore=1&partner=promed'
 ScaleFactor = 1.0
 #-------------------------------#
+
 
 def WriteFileHeaders():
 	Data = open('Data.csv', 'w')
@@ -54,7 +57,6 @@ def FormatData(InputDate):
 	InputDate = InputDate.replace('Dec','12')
 	InputDate = InputDate.strip()
 	return str(InputDate)
-
 
 def GetData(inputURL):
     global MainTypeD
@@ -169,6 +171,7 @@ def GenerateGraphStructure():
 	# Days off can have | 0-3 | 4-8 | 9-14| 15-25 | >25
 	# -----------------------------------------------------
 	#Index of those day |  0  |  1	|  2  |   3   |  4
+
 	global TrueArr
 	global FalseArr
 	TrueArr = [0,0,0,0,0]
@@ -213,6 +216,7 @@ def BayesTheory():
 	global ClassificationPercentages
 	classArrType = [0,1,2,3,4]
 #------------------------- PUTTING EVERYTHING TOGETHER -------------------------# 
+
 	TrueSum = int(sum(TrueArr))
 	FalseSum = int(sum(FalseArr))
 	TotalSum = TrueSum + FalseSum
@@ -276,6 +280,7 @@ def PrintZebiLogo():
 	for SingleLine in FileLines:
 		print("\033[34m" + SingleLine + "\033[0m", end='', flush=True)
 	print('\n\n\n')
+
 
 #-------------------------------#
 PrintZebiLogo()
