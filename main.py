@@ -30,12 +30,8 @@ FalseArr = [0,0,0,0,0]
 ClassificationPercentages = []
 DateDelta = 0
 TodayDate = dt.date.today()
-print(TodayDate.month)
-print(TodayDate.day)
-print(TodayDate.year)
-
-RequestURL = 'http://www.healthmap.org/getAlerts.php?category%5B%5D=1&category%5B%5D=2&category%5B%5D=29&locations%5B%5D=142&species%5B%5D=132&sdate=01%2F21%2F2000&edate=' + str(TodayDate.month) + '%2F' + str(TodayDate.day) + '%2F' +  str(TodayDate.year) + '&heatscore=1&partner=promed'
-ScaleFactor = 1.1
+RequestURL = 'http://www.healthmap.org/getAlerts.php?category%5B%5D=1&category%5B%5D=2&category%5B%5D=29&locations%5B%5D=142&species%5B%5D=132&sdate=01%2F01%2F1900&edate=' + str(TodayDate.month) + '%2F' + str(TodayDate.day) + '%2F' +  str(TodayDate.year) + '&heatscore=1&partner=promed'
+ScaleFactor = 1.0
 #-------------------------------#
 
 def WriteFileHeaders():
@@ -166,7 +162,6 @@ def FormatDataMain():
 					break
 		else:
 			NewUpdatedArr.append(str(iElement))
-	#print("Formatted " + str(len(NewUpdatedArr)) + " points!")
 	return NewUpdatedArr
 
 def GenerateGraphStructure():
@@ -292,7 +287,7 @@ GenerateGraphStructure()
 BayesTheory()
 FinalPredictionVal = Prediction(int(PredictionDaysAheadUserInput))
 FinalPredictionVal = ScaleFactor*FinalPredictionVal
-print('\n\n')
+print('\n')
 print("------------------------------------------------------------------------------------------------------------------------------" + "\n")
 print("There is a " + str(round(float(FinalPredictionVal*100), 3)) + "% chance of their being a " + str(typeDiseaseString) + " outbreak in " + str(PredictionDaysAheadUserInput) + " days of time." + "\n")
 print("The most recent " + str(typeDiseaseString) + " outbreak happened " + str(DateDelta) + " days before the date you entered." + "\n")
