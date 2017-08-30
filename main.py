@@ -2,18 +2,14 @@
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup as soup
-import urllib.request, sys,json,re
-import numpy as np
+import urllib.request, sys,json,re, numpy, math
 from datetime import datetime
 import datetime as dt
-import math
 
 
 #IMPORTANT CONST
 #-------------------------------#
 typeDiseaseString = 'Foodborne'
-GetDataStart = ''
-GetDataEnd = ''
 #-------------------------------#
 
 
@@ -25,6 +21,7 @@ global TrueArr
 global FalseArr
 global ClassificationPercentages
 global DateDelta
+locationString = 'india'
 MainTypeD = []
 MainFormattedArr = []
 TrueArr = [0,0,0,0,0]
@@ -73,7 +70,7 @@ def GetData(inputURL):
     	date_format = "%d/%m/%Y"
     	Date = datetime.strptime(str(Date), date_format)
     	DateString = str(Date).replace(' 00:00:00','')
-    	if str(typeDiseaseString) in str(element['label']).replace(',','_'):
+    	if str(typeDiseaseString) in str(element['label']).replace(',','_') and str(locationString.lower()) in str(str(element['place_name']).replace(',','_').lower()):
     		MainTypeD.append(str(DateString) + ' ' + str(element['lat']) + ' ' + str(element['lon']))
     	NumberAlerts = len(element['alertids'])
     	concateString = str(NumberAlerts) + ', ' + str(Date).replace(',','_') + ', ' + str(element['label']).replace(',','_') + ', ' + str(element['place_name']).replace(',','_') + ', ' + str(element['lat']).replace(',','_') + ', ' + str(element['lon']).replace(',','_') + '\n'
