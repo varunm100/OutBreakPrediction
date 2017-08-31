@@ -10,6 +10,7 @@ import datetime as dt
 #IMPORTANT CONST
 #-------------------------------#
 typeDiseaseString = 'Foodborne'
+getNewestData = False
 #-------------------------------#
 
 
@@ -290,8 +291,8 @@ BayesTheory()
 FinalPredictionVal = Prediction(int(PredictionDaysAheadUserInput))
 FinalPredictionVal = ScaleFactor*FinalPredictionVal
 print('\n')
-print("------------------------------------------------------------------------------------------------------------------------------" + "\n")
+print("--------------------------------------------------------------------------------" + "\n")
 print("There is a " + str(round(float(FinalPredictionVal*100), 3)) + "% chance of their being a " + str(typeDiseaseString) + " outbreak in " + str(PredictionDaysAheadUserInput) + " days of time." + "\n")
 print("The most recent " + str(typeDiseaseString) + " outbreak happened " + str(DateDelta) + " days before the date you entered." + "\n")
-print("------------------------------------------------------------------------------------------------------------------------------")
+print("--------------------------------------------------------------------------------")
 #-------------------------------#
